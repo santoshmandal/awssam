@@ -82,10 +82,12 @@ The SAM CLI reads the application template to determine the API's routes and the
 ```yaml
       Events:
         CreditCardValidation:
-          Type: Api
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /hello
+            Path: /creditcard-validate
             Method: get
+            RequestParameters: ['method.request.querystring.number']
+            RestApiId: !Ref CreditCardValidationApi
 ```
 
 ## Add a resource to your application
